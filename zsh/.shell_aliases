@@ -1,0 +1,18 @@
+
+alias zshconfig="io.elementary.code ~/.zshrc && source ~/.zshrc"
+alias ls="exa -F --icons"
+alias ll="exa -alF --icons"
+# alias la="exa -A --icons"
+alias la="exa -aF --icons"
+alias lla="exa -aF --icons"
+# alias l="ls -CF"
+alias cls="clear"
+alias android-studio="/opt/android-studio/bin/studio.sh"
+alias clang="clang-14"
+alias clang++="clang++-14"
+
+# bash
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# docker
+alias docker="sudo docker"
