@@ -2,3 +2,7 @@
 	path = nvim
 	url = https://github.com/901228/nvim.git
 	branch = main
+[submodule "wezterm"]
+	path = wezterm
+	url = https://github.com/901228/wezterm.git
+	branch = main
