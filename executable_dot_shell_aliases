@@ -1,0 +1,13 @@
+alias ls="eza -F --icons always"
+alias ll="eza -alF --icons always"
+# alias la="eza -A --icons always"
+alias la="eza -aF --icons always"
+alias lla="eza -aF --icons always"
+# alias l="ls -CF"
+alias cls="clear"
+
+# bash
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# docker
+alias docker="sudo docker"
