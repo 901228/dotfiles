@@ -18,8 +18,8 @@
         "battery",
         "clock",
         "keyboard-state",
-        "tray"
-        // "custom/wlogout"
+        "tray",
+        "custom/wlogout"
     ],
 
     "keyboard-state": {
@@ -76,16 +76,8 @@
         },
         "on-click": "pavucontrol"
     },
-    "custom/power": {
-        "format" : "⏻ ",
-        "tooltip": false,
-        "menu": "on-click",
-        "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
-        "menu-actions": {
-            "shutdown": "shutdown",
-            "reboot": "reboot",
-            "suspend": "systemctl suspend",
-            "hibernate": "systemctl hibernate"
-        }
-    },
+    "custom/wlogout": {
+        "format": "",
+        "on-click": "wlogout",
+    }
 }
