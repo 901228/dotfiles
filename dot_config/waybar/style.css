@@ -9,17 +9,25 @@ window#waybar {
     background-color: transparent;
 }
 
+#window {
+    border-radius: 1rem;
+    background-color: @surface0;
+    color: @text;
+    padding: 0 1rem;
+}
+
 #workspaces {
     border-radius: 1rem;
-    margin: 5px;
     background-color: @surface0;
     margin-left: 1rem;
+    padding: 0 1rem;
 }
 
 #workspaces button {
     color: @lavendar;
     border-radius: 1rem;
-    padding: 0.4rem;
+    margin: 0.4rem 0;
+    padding: 0 0.4rem;
 }
 
 #workspaces button.active {
@@ -41,13 +49,13 @@ window#waybar {
 #custom-wlogout
 {
     background-color: @surface0;
-    padding: 0.5rem 1rem;
-    margin: 5px 0;
+    padding: 0 1rem;
 }
 
 #clock {
     color: @blue;
     border-radius: 0 1rem 1rem 0;
+    margin-right: 0.2rem;
 }
 
 #battery {
@@ -64,14 +72,14 @@ window#waybar {
 
 @keyframes blink {
     to {
-        background-color: #ffffff;
-        color: #000000;
+        background-color: @text;
+        color: @crust;
     }
 }
 
 #battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
+    background-color: @red;
+    color: @text;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: steps(12);
@@ -80,7 +88,7 @@ window#waybar {
 }
 
 label:focus {
-    background-color: #000000;
+    background-color: @crust;
 }
 
 #backlight {
@@ -97,7 +105,11 @@ label:focus {
 }
 
 #tray {
+    background: @overlay0;
     border-radius: 1rem;
+    margin-left: 0.2rem;
+    margin-right: 0.2rem;
+    border: 0.2rem solid;
 }
 
 #tray > .passive {
@@ -112,10 +124,21 @@ label:focus {
 #keyboard-state {
     color: @sky;
     border-radius: 1rem;
+    margin-left: 0.2rem;
+    margin-right: 0.2rem;
+}
+
+#keyboard-state label {
+    color: @yellow;
+}
+
+#keyboard-state label.locked {
+    color: @red;
 }
 
 #custom-wlogout {
     color: @peach;
     border-radius: 1rem;
     margin-right: 1rem;
+    margin-left: 0.2rem;
 }
