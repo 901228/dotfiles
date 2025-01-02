@@ -27,6 +27,9 @@ zinit light zsh-users/zsh-autosuggestions
 zinit ice lucid wait
 zinit light zsh-users/zsh-completions
 
+zinit ice lucid wait
+zinit light zsh-users/zsh-history-substring-search
+
 zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh
 zinit snippet OMZ::plugins/battery/battery.plugin.zsh
 zinit snippet OMZ::plugins/common-aliases/common-aliases.plugin.zsh

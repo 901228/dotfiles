@@ -80,8 +80,7 @@ config.colors = {
 }
 -- windows
 config.window_background_opacity = 0.7
--- config.window_decorations = 'INTEGRATED_BUTTONS | RESIZE'
-config.window_decorations = 'NONE'
+config.window_decorations = 'INTEGRATED_BUTTONS | RESIZE'
 
 -- initial window size
 config.initial_cols = 110
@@ -106,7 +105,7 @@ config.webgpu_power_preference = 'HighPerformance'
 config.enable_scroll_bar = true
 config.enable_wayland = false
 config.quote_dropped_files = 'Posix'
-config.term = 'wezterm'
+-- config.term = 'wezterm'
 
 return config
 
