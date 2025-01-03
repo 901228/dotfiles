@@ -80,7 +80,8 @@ config.colors = {
 }
 -- windows
 config.window_background_opacity = 0.7
-config.window_decorations = 'INTEGRATED_BUTTONS | RESIZE'
+-- config.window_decorations = 'INTEGRATED_BUTTONS | RESIZE'
+config.window_decorations = 'TITLE | RESIZE'
 
 -- initial window size
 config.initial_cols = 110
