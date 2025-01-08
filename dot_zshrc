@@ -56,7 +56,9 @@ zinit ice as="completion"
 DISABLE_LS_COLORS=true
 
 # use fd for fzf
-export FZF_DEFAULT_COMMAND='fd --type f'
+export FZF_DEFAULT_COMMAND='fdfind --type file --color=always --follow --hidden --exclude .git'
+export FXF_CTRL_T_COMMENT="$FZF_DEFAULT_COMMAND"
+export FZF_DEFAULT_OPTS="--ansi"
 
 # End of load
 

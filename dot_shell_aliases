@@ -14,3 +14,6 @@ alias docker="sudo docker"
 
 # fastfetch
 alias neofetch="fastfetch"
+
+# fd
+alias fd="fdfind"
