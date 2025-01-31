@@ -96,9 +96,10 @@ config.window_frame = {
     font_size = 12.0,
 }
 config.window_padding = {
-    left = 0,
-    right = 0,
-    top = '0.5cell',
+    left = '0.5cell',
+    right = '0.5cell',
+    top = '0.25cell',
+    -- bottom = '0.25cell',
     bottom = 0,
 }
 
