@@ -55,10 +55,13 @@ config = require('keymaps').setup(wezterm, config)
 -- integration with neovim
 local smart_splits = wezterm.plugin.require('https://github.com/mrjones2014/smart-splits.nvim')
 smart_splits.apply_to_config(config, {
-    direction_keys = { 'h', 'j', 'k', 'l' },
+    direction_keys = {
+        move = { 'h', 'j', 'k', 'l' },
+        resize = {},
+    },
     modifiers = {
-        move = 'META', -- modifier to use for pane movement, e.g. CTRL+h to move left
-        resize = 'SHIFT', -- modifier to use for pane resize, e.g. META+h to resize to the left
+        move = 'META', -- modifier to use for pane movement
+        resize = 'SHIFT', -- modifier to use for pane resize
     },
     log_level = 'info',
 })
