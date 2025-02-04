@@ -3,6 +3,8 @@ local M = {}
 ---@param wezterm Wezterm
 ---@param config Config
 function M.setup(wezterm, config)
+    -- config.disable_default_key_bindings = true
+
     config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1000 }
 
     local act = wezterm.action
@@ -36,6 +38,16 @@ function M.setup(wezterm, config)
             key = 'h',
             mods = 'LEADER',
             action = act.ActivateTabRelative(-1),
+        },
+        {
+            key = 't',
+            mods = 'CTRL|LEADER',
+            action = act.SpawnTab('CurrentPaneDomain'),
+        },
+        {
+            key = 't',
+            mods = 'LEADER',
+            action = act.SpawnTab('CurrentPaneDomain'),
         },
 
         -- resize mode
