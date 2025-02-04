@@ -381,8 +381,17 @@ function M.tabbar.setup(wezterm, config, tab_bar_bg)
             { Text = ' ' .. string.format('%-3d', window:mux_window():window_id()) },
 
             { Foreground = { AnsiColor = 'Lime' } },
+            -- { Background = { Color = 'Yellow' } },
             { Background = { Color = tab_bar_bg } },
             { Text = SOLID_RIGHT_ARROW },
+
+            -- { Foreground = { AnsiColor = 'Black' } },
+            -- { Background = { AnsiColor = 'Yellow' } },
+            -- { Text = ' ' .. tostring(pane:get_title()) .. ' ' },
+            --
+            -- { Foreground = { AnsiColor = 'Yellow' } },
+            -- { Background = { Color = tab_bar_bg } },
+            -- { Text = SOLID_RIGHT_ARROW },
         }))
     end)
 
