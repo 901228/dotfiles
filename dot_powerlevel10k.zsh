@@ -55,12 +55,15 @@ POWERLEVEL9K_CONTEXT_BACKGROUND='#45475A'
 # dir
 POWERLEVEL9K_DIR_BACKGROUND='blue'
 
+# anaconda
+POWERLEVEL9K_ANACONDA_BACKGROUND='lime'
+
 # prompt
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
 POWERLEVEL9K_RPROMPT_ICON_LEFT=true
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context root_indicator dir dir_writable vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context root_indicator dir dir_writable anaconda vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time background_jobs vpn_ip public_ip time battery)
 
 # prompt prefix
