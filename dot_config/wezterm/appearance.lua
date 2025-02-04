@@ -143,7 +143,7 @@ function M.tabbar.cpu.get(wezterm, throttle)
     throttle = throttle or 3
 
     local current_time = os.time()
-    if current_time - M.cpu.cache.last_update_time < throttle then return M.cpu.cache.last_result end
+    if current_time - M.tabbar.cpu.cache.last_update_time < throttle then return M.tabbar.cpu.cache.last_result end
     local success, result
     if string.match(wezterm.target_triple, 'windows') ~= nil then
         success, result = wezterm.run_child_process({
@@ -189,8 +189,8 @@ function M.tabbar.cpu.get(wezterm, throttle)
 
     cpu = ' ' .. string.format('%.2f%%', cpu)
 
-    M.cpu.cache.last_update_time = current_time
-    M.cpu.cache.last_result = cpu
+    M.tabbar.cpu.cache.last_update_time = current_time
+    M.tabbar.cpu.cache.last_result = cpu
 
     return cpu
 end
@@ -205,7 +205,7 @@ function M.tabbar.ram.get(wezterm, throttle)
     throttle = throttle or 3
 
     local current_time = os.time()
-    if current_time - M.ram.cache.last_update_time < throttle then return M.ram.cache.last_result end
+    if current_time - M.tabbar.ram.cache.last_update_time < throttle then return M.tabbar.ram.cache.last_result end
     local success, result
     if string.match(wezterm.target_triple, 'windows') ~= nil then
         success, result = wezterm.run_child_process({
@@ -244,8 +244,8 @@ function M.tabbar.ram.get(wezterm, throttle)
 
     ram = '  ' .. ram
 
-    M.ram.cache.last_update_time = current_time
-    M.ram.cache.last_result = ram
+    M.tabbar.ram.cache.last_update_time = current_time
+    M.tabbar.ram.cache.last_result = ram
 
     return ram
 end
@@ -424,7 +424,7 @@ function M.tabbar.setup(wezterm, config, tab_bar_bg)
             { Foreground = { AnsiColor = 'Black' } },
             { Background = { AnsiColor = 'Fuchsia' } },
             { Text = ' ' },
-            { Text = M.ram.get(wezterm, nil) },
+            { Text = M.tabbar.ram.get(wezterm, nil) },
 
             { Foreground = { AnsiColor = 'Red' } },
             { Background = { AnsiColor = 'Fuchsia' } },
@@ -434,7 +434,7 @@ function M.tabbar.setup(wezterm, config, tab_bar_bg)
             { Foreground = { AnsiColor = 'Black' } },
             { Background = { AnsiColor = 'Red' } },
             { Text = ' ' },
-            { Text = M.cpu.get(wezterm, nil) },
+            { Text = M.tabbar.cpu.get(wezterm, nil) },
 
             { Foreground = { AnsiColor = 'Blue' } },
             { Background = { AnsiColor = 'Red' } },
@@ -444,7 +444,7 @@ function M.tabbar.setup(wezterm, config, tab_bar_bg)
             { Foreground = { AnsiColor = 'Black' } },
             { Background = { AnsiColor = 'Blue' } },
             { Text = ' ' },
-            { Text = M.battery.get(wezterm) },
+            { Text = M.tabbar.battery.get(wezterm) },
 
             { Text = ' ' },
         }))
