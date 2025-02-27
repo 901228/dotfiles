@@ -38,6 +38,9 @@ config.launch_menu = {
     },
 }
 
+-- default_prog
+config.default_prog = { 'nu' }
+
 -- front_end
 config.front_end = 'WebGpu'
 config.webgpu_power_preference = 'HighPerformance'
