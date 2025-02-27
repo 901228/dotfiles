@@ -50,9 +50,9 @@ source ($nu.data-dir | path join "completions/yarn-v4-completions.nu")
 source ($nu.data-dir | path join "completions/pip-completions.nu")
 
 # Hooks
-$env.config.hooks = {
-    command_not_found: (source ($nu.data-dir | path join "hooks/did_you_mean.nu"))
-}
+# $env.config.hooks = {
+#     command_not_found: (source ($nu.data-dir | path join "hooks/did_you_mean.nu"))
+# }
 
 # Keybidings
 $env.config.keybindings = [
