@@ -7,7 +7,7 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 source "${ZINIT_HOME}/zinit.zsh"
 
 # If you come from bash you might have to change your $PATH.
-export PATH=$PATH:$HOME/bin:/usr/bin
+export PATH=$PATH:$HOME/bin:/usr/bin:$HOME/.local/bin
 
 
 if [ -f "$HOME/.powerlevel10k.zsh" ]; then
@@ -102,10 +102,9 @@ export NVM_DIR="$HOME/.nvm"
 
 # vcpkg
 if [ -d "$HOME/.local/src/vcpkg" ]; then
-    export PATH=$PATH:$HOME/.local/src/vcpkg
-    autoload bashcompinit
-    bashcompinit
-    source $HOME/.local/src/vcpkg/scripts/vcpkg_completion.zsh
+    export VCPKG_ROOT=$HOME/.local/src/vcpkg
+    export PATH=$VCPKG_ROOT:$PATH
+    source $VCPKG_ROOT/scripts/vcpkg_completion.zsh
 fi
 
 # >>> conda initialize >>>
