@@ -205,6 +205,14 @@ function M.setup(wezterm, config, tab_bar_bg)
     wezterm.on('format-tab-title', function(tab, tabs, panes, cfg, hover, max_width)
         local title = tab.tab_title
         title = title and #title > 0 and title or tab.active_pane.title
+
+        -- check max width
+        -- 3(tab index) + 1(divider) = 4
+        -- 4 + 3(...) = 7
+        -- TODO:
+        title = title:len() < max_width - 4 and title or title:sub(1, max_width - 7) .. '...'
+
+        -- add tab index
         title = tostring(tab.tab_index) .. ' ' .. title .. ' '
 
         local edge_background = { Color = tab_bar_bg }

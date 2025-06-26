@@ -17,7 +17,8 @@ config = Appearance.colorscheme.setup(wezterm, config, tab_bar_bg)
 config = Appearance.window.setup(wezterm, config)
 
 --- Tab bar ---
-config = Appearance.tabbar.setup(wezterm, config, tab_bar_bg)
+local Tabbar = require('tab_bar')
+config = Tabbar.setup(wezterm, config, tab_bar_bg)
 
 -- plus tab menu entry
 config.launch_menu = {
@@ -36,7 +37,20 @@ config.launch_menu = {
         label = 'Bash',
         args = { 'bash', '-l' },
     },
+    ---@diagnostic disable-next-line: missing-fields
+    {
+        label = 'Nushell',
+        args = { 'nu', '-l' },
+    },
+    ---@diagnostic disable-next-line: missing-fields
+    {
+        label = 'Powershell',
+        args = { 'pwsh' },
+    },
 }
+
+-- default_prog
+-- config.default_prog = { 'nu' }
 
 -- front_end
 config.front_end = 'WebGpu'
