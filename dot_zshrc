@@ -40,11 +40,17 @@ zinit snippet OMZ::plugins/git/git.plugin.zsh
 
 zinit light chrissicool/zsh-256color
 
+# completions
+fpath+=~/.zfunc
+
 # zsh completion
 zstyle ':completion:*' matcher-list 'm:{a-za-z}={a-za-z}' \
     'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' menu yes select
 autoload -Uz compinit && compinit
+
+autoload -U bashcompinit
+bashcompinit
 
 # load some completion
 zinit ice mv="*.zsh -> _fzf" as="completion"
@@ -75,8 +81,16 @@ export JRE_HOME=$JAVA_HOME/jre
 export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
 export CLASSPATH=$CLASSPATH:.:$JAVA_HOME/lib:$JRE_HOME/lib
 
-# Python
-# eval "`pip completion --zsh`"
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+# pip completion
+eval "`pip completion --zsh`"
+
+# pipx completion
+eval "$(register-python-argcomplete pipx)"
 
 # snap
 export PATH=$PATH:/snap/bin
@@ -96,23 +110,23 @@ fi
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-if [ -d "$HOME/miniconda3" ]; then
-    __conda_setup="$("$HOME/miniconda3/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
-    if [ $? -eq 0 ]; then
-        eval "$__conda_setup"
+__conda_setup="$('/home/harry/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/harry/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/harry/miniconda3/etc/profile.d/conda.sh"
     else
-        if [ -f "/home/harry/miniconda3/etc/profile.d/conda.sh" ]; then
-            . "/home/harry/miniconda3/etc/profile.d/conda.sh"
-        else
-            export PATH="/home/harry/miniconda3/bin:$PATH"
-        fi
+        export PATH="/home/harry/miniconda3/bin:$PATH"
     fi
-    unset __conda_setup
 fi
+unset __conda_setup
 # <<< conda initialize <<<
+
+# pixi
+export PATH="/home/harry/.pixi/bin:$PATH"
 
 zinit ice wait'0' lucid depth=1 \
     atload"autoload -Uz compinit && compinit -u" \
     atpull"zinit cclear && zinit creinstall sainnhe/zsh-completions"
 zinit light sainnhe/zsh-completions
-
