@@ -129,3 +129,7 @@ zinit ice wait'0' lucid depth=1 \
     atload"autoload -Uz compinit && compinit -u" \
     atpull"zinit cclear && zinit creinstall sainnhe/zsh-completions"
 zinit light sainnhe/zsh-completions
+
+# cuda
+export PATH=/opt/cuda-11.7/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/opt/cuda-11.7/lib64:${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
