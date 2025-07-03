@@ -95,6 +95,12 @@ function M.setup(wezterm, config)
 
         { key = 'DownArrow', mods = 'ALT', action = act.ActivatePaneDirection('Down') },
         { key = 'j', mods = 'ALT', action = act.ActivatePaneDirection('Down') },
+
+        -- move cursor
+        { mods = '', key = 'Home', action = act({ SendString = '\001' }) },
+        { mods = '', key = 'End', action = act({ SendString = '\005' }) },
+        { mods = 'OPT', key = 'LeftArrow', action = act({ SendKey = { key = 'b', mods = 'ALT' } }) },
+        { mods = 'OPT', key = 'RightArrow', action = act({ SendKey = { key = 'f', mods = 'ALT' } }) },
     }
 
     -- key tables
