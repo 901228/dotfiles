@@ -58,6 +58,7 @@ config.webgpu_power_preference = 'HighPerformance'
 
 --- Others ---
 config.enable_wayland = false
+config.audible_bell = 'Disabled'
 
 ---@diagnostic disable-next-line: assign-type-mismatch
 config.quote_dropped_files = 'Posix'
