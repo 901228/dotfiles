@@ -35,3 +35,10 @@ export QT_IM_MODULE="fcitx"
 export SDL_IM_MODULE="fcitx"
 export GLFW_IM_MODULE="fcitx"
 
+# Added by Toolbox App
+export PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts"
+
+export EDITOR="nvim"
+
+# go
+export PATH=$PATH:/usr/local/go/bin

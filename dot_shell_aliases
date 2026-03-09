@@ -1,9 +1,7 @@
-alias ls="eza -F --icons always"
-alias ll="eza -alF --icons always"
+alias ls="eza -F -s type --icons always"
+alias ll="eza -alF -s type --icons always"
 # alias la="eza -A --icons always"
-alias la="eza -aF --icons always"
-alias lla="eza -aF --icons always"
-# alias l="ls -CF"
+alias la="eza -aF -s type --icons always"
 alias cls="clear"
 
 # bash
@@ -13,4 +11,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias neofetch="fastfetch"
 
 # fd
-alias fd="fdfind"
+# alias fd="fdfind"
+
+# package manager
+alias yay-clean="yay -Qdtq | yay -Rns -"

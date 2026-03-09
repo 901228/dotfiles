@@ -1,5 +1,14 @@
+# Rust
 . "$HOME/.cargo/env"
-export PATH="$HOME/development/flutter/bin:$PATH"
+
+# Dart pub global CLI tools (melos, dart_frog_cli, jaspr_cli...)
+export PATH="$HOME/.pub-cache/bin:$PATH"
+
+# FVM
+export PATH="$HOME/.fvm_flutter/bin:$PATH"
+
+# Flutter
+# export PATH="$HOME/.local/src/flutter/bin:$PATH"
 
 export XIM="fcitx"
 export XIM_PROGRAM="fcitx"
@@ -9,3 +18,4 @@ export QT_IM_MODULE="fcitx"
 export SDL_IM_MODULE="fcitx"
 export GLFW_IM_MODULE="fcitx"
 
+export EDITOR="nvim"
