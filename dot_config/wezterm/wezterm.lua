@@ -72,11 +72,11 @@ local smart_splits = wezterm.plugin.require('https://github.com/mrjones2014/smar
 smart_splits.apply_to_config(config, {
     direction_keys = {
         move = { 'h', 'j', 'k', 'l' },
-        resize = {},
+        resize = { 'LeftArrow', 'RightArrow', 'UpArrow', 'DownArrow' },
     },
     modifiers = {
         move = 'META', -- modifier to use for pane movement
-        resize = 'SHIFT', -- modifier to use for pane resize
+        resize = 'META', -- modifier to use for pane resize
     },
     log_level = 'info',
 })
