@@ -14,9 +14,10 @@ function M.cpu.get(wezterm, throttle)
     local success, result
     if string.match(wezterm.target_triple, 'windows') ~= nil then
         success, result = wezterm.run_child_process({
-            'cmd.exe',
-            '/C',
-            'wmic cpu get loadpercentage',
+            'powershell.exe',
+            '-NoProfile',
+            '-Command',
+            '(Get-CimInstance Win32_Processor).LoadPercentage',
         })
     elseif string.match(wezterm.target_triple, 'linux') ~= nil then
         success, result = wezterm.run_child_process({
@@ -54,7 +55,7 @@ function M.cpu.get(wezterm, throttle)
         end
     end
 
-    cpu = ' ' .. string.format('%.2f%%', cpu)
+    cpu = ' ' .. string.format('%4.2f%%', cpu)
 
     M.cpu.cache.last_update_time = current_time
     M.cpu.cache.last_result = cpu
@@ -76,9 +77,10 @@ function M.ram.get(wezterm, throttle)
     local success, result
     if string.match(wezterm.target_triple, 'windows') ~= nil then
         success, result = wezterm.run_child_process({
-            'cmd.exe',
-            '/C',
-            'wmic OS get FreePhysicalMemory',
+            'powershell.exe',
+            '-NoProfile',
+            '-Command',
+            '(Get-CimInstance Win32_OperatingSystem).FreePhysicalMemory',
         })
     elseif string.match(wezterm.target_triple, 'linux') ~= nil then
         success, result =
@@ -206,14 +208,14 @@ function M.setup(wezterm, config, tab_bar_bg)
         local title = tab.tab_title
         title = title and #title > 0 and title or tab.active_pane.title
 
-        -- check max width
-        -- 3(tab index) + 1(divider) = 4
-        -- 4 + 3(...) = 7
-        -- TODO:
-        title = title:len() < max_width - 4 and title or title:sub(1, max_width - 7) .. '...'
+        local prefix = tostring(tab.tab_index) .. ' ' -- tab index
+        local suffix = ' '
+        local extra = tab.is_active and 1 or 0 -- active padding
+        local arrow = 2 -- trailing arrow
 
-        -- add tab index
-        title = tostring(tab.tab_index) .. ' ' .. title .. ' '
+        local reserved = #prefix + #suffix + extra + arrow -- all reserved
+        title = #title < max_width - reserved and title or title:sub(1, max_width - reserved - 3) .. '...'
+        title = prefix .. title .. suffix
 
         local edge_background = { Color = tab_bar_bg }
         local background = { Color = tab_bar_bg }
@@ -268,10 +270,10 @@ function M.setup(wezterm, config, tab_bar_bg)
         local date = wezterm.strftime('%m/%d %a %H:%M:%S ')
 
         local compose = ''
-        if window:composition_status() then compose = 'COMPOSING: ' .. compose end
+        if window:composition_status() then compose = nerdfonts.md_keyboard .. ' ' end
 
         local leader = ''
-        if window:leader_is_active() then leader = '󰘳 ' end
+        if window:leader_is_active() then leader = nerdfonts.md_apple_keyboard_command .. ' ' end
 
         ---@diagnostic disable-next-line: undefined-field
         window:set_right_status(wezterm.format({
@@ -298,7 +300,7 @@ function M.setup(wezterm, config, tab_bar_bg)
             { Foreground = { AnsiColor = 'Black' } },
             { Background = { AnsiColor = 'Fuchsia' } },
             { Text = ' ' },
-            { Text = M.ram.get(wezterm, nil) },
+            { Text = M.ram.get(wezterm, 10) },
 
             { Foreground = { AnsiColor = 'Red' } },
             { Background = { AnsiColor = 'Fuchsia' } },
@@ -308,7 +310,7 @@ function M.setup(wezterm, config, tab_bar_bg)
             { Foreground = { AnsiColor = 'Black' } },
             { Background = { AnsiColor = 'Red' } },
             { Text = ' ' },
-            { Text = M.cpu.get(wezterm, nil) },
+            { Text = M.cpu.get(wezterm, 10) },
 
             { Foreground = { AnsiColor = 'Blue' } },
             { Background = { AnsiColor = 'Red' } },
@@ -320,9 +322,61 @@ function M.setup(wezterm, config, tab_bar_bg)
             { Text = ' ' },
             { Text = M.battery.get(wezterm) },
 
-            { Text = ' ' },
+            -- { Text = ' ' },
+            { Foreground = { AnsiColor = 'Blue' } },
+            { Background = { Color = tab_bar_bg } },
+            { Text = nerdfonts.ple_right_half_circle_thick },
         }))
     end)
+
+    -- setup tab_bar_style
+    config.tab_bar_style = {
+        new_tab = wezterm.format({
+            { Background = { Color = tab_bar_bg } },
+            { Foreground = { AnsiColor = 'White' } },
+            { Text = '  + ' },
+        }),
+        new_tab_hover = wezterm.format({
+            { Background = { Color = tab_bar_bg } },
+            { Foreground = { AnsiColor = 'White' } },
+            { Text = ' ' },
+            { Background = { AnsiColor = 'Silver' } },
+            { Foreground = { Color = tab_bar_bg } },
+            { Text = ' + ' },
+        }),
+
+        -- decorations
+        window_hide = wezterm.format({
+            { Background = { Color = tab_bar_bg } },
+            { Foreground = { AnsiColor = 'White' } },
+            { Text = ' ' .. nerdfonts.cod_chrome_minimize ..' ' },
+        }),
+        window_hide_hover = wezterm.format({
+            { Background = { AnsiColor = 'Grey' } },
+            { Foreground = { AnsiColor = 'White' } },
+            { Text = ' ' .. nerdfonts.cod_chrome_minimize ..' ' },
+        }),
+        window_maximize = wezterm.format({
+            { Background = { Color = tab_bar_bg } },
+            { Foreground = { AnsiColor = 'White' } },
+            { Text = ' ' .. nerdfonts.cod_chrome_maximize ..' ' },
+        }),
+        window_maximize_hover = wezterm.format({
+            { Background = { AnsiColor = 'Grey' } },
+            { Foreground = { AnsiColor = 'White' } },
+            { Text = ' ' .. nerdfonts.cod_chrome_maximize ..' ' },
+        }),
+        window_close = wezterm.format({
+            { Background = { Color = tab_bar_bg } },
+            { Foreground = { AnsiColor = 'White' } },
+            { Text = ' ' .. nerdfonts.cod_chrome_close ..' ' },
+        }),
+        window_close_hover = wezterm.format({
+            { Background = { AnsiColor = 'Red' } },
+            { Foreground = { AnsiColor = 'White' } },
+            { Text = ' ' .. nerdfonts.cod_chrome_close ..' ' },
+        }),
+    }
 
     return config
 end

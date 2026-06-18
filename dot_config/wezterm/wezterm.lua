@@ -53,7 +53,7 @@ config.launch_menu = {
 -- config.default_prog = { 'nu' }
 
 -- front_end
-config.front_end = 'WebGpu'
+config.front_end = 'OpenGL'
 config.webgpu_power_preference = 'HighPerformance'
 
 --- Others ---

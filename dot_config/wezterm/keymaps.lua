@@ -84,16 +84,16 @@ function M.setup(wezterm, config)
         },
 
         -- change pane directly
-        { key = 'LeftArrow', mods = 'ALT', action = act.ActivatePaneDirection('Left') },
+        -- { key = 'LeftArrow', mods = 'ALT', action = act.ActivatePaneDirection('Left') },
         { key = 'h', mods = 'ALT', action = act.ActivatePaneDirection('Left') },
 
-        { key = 'RightArrow', mods = 'ALT', action = act.ActivatePaneDirection('Right') },
+        -- { key = 'RightArrow', mods = 'ALT', action = act.ActivatePaneDirection('Right') },
         { key = 'l', mods = 'ALT', action = act.ActivatePaneDirection('Right') },
 
-        { key = 'UpArrow', mods = 'ALT', action = act.ActivatePaneDirection('Up') },
+        -- { key = 'UpArrow', mods = 'ALT', action = act.ActivatePaneDirection('Up') },
         { key = 'k', mods = 'ALT', action = act.ActivatePaneDirection('Up') },
 
-        { key = 'DownArrow', mods = 'ALT', action = act.ActivatePaneDirection('Down') },
+        -- { key = 'DownArrow', mods = 'ALT', action = act.ActivatePaneDirection('Down') },
         { key = 'j', mods = 'ALT', action = act.ActivatePaneDirection('Down') },
 
         -- move cursor

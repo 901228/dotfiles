@@ -8,6 +8,7 @@ function M.font.setup(wezterm, config)
     -- font family
     config.font = wezterm.font_with_fallback({
         'MesloLGS Nerd Font',
+        'FakePearl',
         'jf-openhuninn-2.0',
         'Cica',
         'Noto Sans Mono CJK TC',
@@ -110,21 +111,37 @@ function M.window.setup(wezterm, config)
 
     ---@diagnostic disable-next-line: missing-fields
     config.window_frame = {
-        ---@diagnostic disable-next-line: missing-fields
         font = wezterm.font({ family = 'Roboto', weight = 'Regular' }),
         font_size = 12.0,
+
+        -- border width
+        border_left_width = '0.5cell',
+        border_right_width = '0.5cell',
+        border_bottom_height = '0.25cell',
+        border_top_height = '0.25cell',
+
+        -- border color
+        border_left_color = 'skyblue',
+        border_right_color = 'skyblue',
+        border_bottom_color = 'skyblue',
+        border_top_color = 'skyblue',
     }
     config.window_padding = {
         left = '0.5cell',
         right = '0.5cell',
         top = '0.25cell',
-        -- bottom = '0.25cell',
         bottom = 0,
     }
 
     -- initial window size
     config.initial_cols = 110
     config.initial_rows = 32
+
+    -- decorations
+    config.window_decorations = 'INTEGRATED_BUTTONS|RESIZE'
+    config.integrated_title_button_style = 'Gnome'
+    config.integrated_title_button_color = 'Auto'
+    config.integrated_title_buttons = { 'Hide', 'Maximize', 'Close' }
 
     -- others
     config.enable_scroll_bar = true
